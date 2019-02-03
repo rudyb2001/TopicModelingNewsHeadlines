@@ -1,0 +1,6 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.condaPath": "C:\\Users\\atanu\\Anaconda3\\Scripts\\conda.exe",
+    "python.pythonPath": "C:\\Users\\atanu\\Anaconda3\\python.exe"
+}
