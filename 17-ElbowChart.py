@@ -55,6 +55,9 @@ if __name__ == '__main__':
     # Can take a long time to run.
     model_list, coherence_values = compute_coherence_values(dictionary=dictionary, corpus=corpus_tfidf, texts=processed_docs, start=2, limit=20, step=2)
 
+    with open('./pickle/coherence_scores.pkl', 'wb') as f:
+        pickle.dump(coherence_values, f)
+
     # Show graph
     limit=20; start=2; step=2
     x = range(start, limit, step)
