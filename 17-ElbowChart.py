@@ -1,4 +1,5 @@
 import pickle
+import numpy
 import gensim
 
 from gensim.models.coherencemodel import CoherenceModel
@@ -12,8 +13,6 @@ with open('./pickle/dictionary.pkl', 'rb') as f:
 
 import pandas as pd
 processed_docs = pd.read_pickle("./pickle/processed_docs.pkl")
-
-mallet_path = 'C:/mallet-2.0.8/bin/mallet'
 
 def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
     """
@@ -33,8 +32,11 @@ def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
     """
     coherence_values = []
     model_list = []
+
+    mallet_path = 'C:/mallet-2.0.8/bin/mallet'
+
     for num_topics in range(start, limit, step):
-        model = gensim.models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=num_topics, id2word=dictionary)
+         model = gensim.models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=num_topics, id2word=dictionary)
         model_list.append(model)
         coherencemodel = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence='c_v')
         coherence_score = coherencemodel.get_coherence()
